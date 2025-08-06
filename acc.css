@@ -1,17 +1,4 @@
-/* HTML STRUCTURE */
-/* Step -1 - parentContainer */
-/* step -2 - component */
-/* step -3 - componentContainer */
-/* step -4 - row */
-/* step -5 - column */
-/* step -6 - subColumn */
-/* step -7 - contentContainer */
-/* step -8 - content */
 
-/* parent Container - default css style */
-
-
-/* Step 2 - component */
 .accordion {
   background: linear-gradient(135deg, #ffdddd, #ffe3e3);
   padding: 2rem;
@@ -19,19 +6,16 @@
   box-shadow: 0 0 20px rgba(255, 99, 132, 0.2);
 }
 
-/* Step 3 - componentContainer */
 .accordionContainer {
-  /* background-color: #fff; */
   border-radius: 10px;
 }
 
-/* Step 4 - row */
 .accordionBody {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
-/* Step 5 - column */
 .accordionBlock {
   background-color: #ffffff;
   border-radius: 20px;
@@ -40,14 +24,14 @@
   transition: 0.3s ease;
 }
 
-/* Step 6 - subColumn */
 .accordionBox {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(5px);
   border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-/* Step 7 - Title (clickable) */
 .accordionTitle {
   background: linear-gradient(90deg, #e239ee, #ff009d);
   border: 2px solid #4d0457;
@@ -65,8 +49,6 @@
   border-radius: 20px 20px 0 0;
 }
 
-
-/* Toggle Symbol */
 .accordionTitle::after {
   content: '-';
   font-size: 3rem;
@@ -76,38 +58,54 @@
   transition: 0.3s ease;
 }
 
-/* Step 8 - Content */
+/* HIDDEN CONTENT DEFAULT */
 .accordionContent {
-    background-color: rgb(169, 250, 236);
+  background-color: rgb(169, 250, 236);
   color: rgb(3, 3, 3);
-  padding: 2rem;
+  padding: 0;
   font-size: 2rem;
-  text-align:start;
-  text-wrap:wrap;
+  text-align: start;
+  text-wrap: wrap;
   border-top: 1px solid #000;
   transition: all 0.5s ease;
-  max-height: 500px;
+  max-height: 0;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
-/* Collapsed state */
+/* SHOW ON ACTIVE */
+.accordionBlock.active .accordionContent {
+  padding: 2rem;
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* TOGGLE SYMBOL */
 .accordionBlock.active .accordionTitle::after {
   content: '+';
 }
 
-.accordionBlock.active .accordionContent {
-  padding: 0;
-  max-height: 0;
-  opacity: 0;
+/* Border radius fixes */
+.accordionBlock.active .accordionBox {
+  border-radius: 20px 20px 0 0;
 }
 
-.heading{
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 2rem;
+.accordionBlock:not(.active) .accordionBox {
+  border-radius: 20px;
 }
 
+/* HEADING */
+.heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
 
+/* MEDIA QUERIES */
+
+/* PHONES */
 @media (max-width: 576px) {
   .accordionTitle {
     font-size: 1.4rem;
@@ -121,6 +119,9 @@
 
   .accordionContent {
     font-size: 1.2rem;
+  }
+
+  .accordionBlock.active .accordionContent {
     padding: 1rem;
   }
 
@@ -130,10 +131,10 @@
   }
 }
 
-
+/* TABLETS */
 @media (max-width: 768px) {
   .accordionBody {
-    grid-template-columns: 1fr; /* Stack on mobile */
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 0 1rem;
   }
@@ -150,6 +151,9 @@
 
   .accordionContent {
     font-size: 1.4rem;
+  }
+
+  .accordionBlock.active .accordionContent {
     padding: 1.5rem;
   }
 
@@ -159,5 +163,3 @@
     padding: 0 1rem;
   }
 }
-
-
