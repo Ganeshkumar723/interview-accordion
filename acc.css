@@ -1,0 +1,163 @@
+/* HTML STRUCTURE */
+/* Step -1 - parentContainer */
+/* step -2 - component */
+/* step -3 - componentContainer */
+/* step -4 - row */
+/* step -5 - column */
+/* step -6 - subColumn */
+/* step -7 - contentContainer */
+/* step -8 - content */
+
+/* parent Container - default css style */
+
+
+/* Step 2 - component */
+.accordion {
+  background: linear-gradient(135deg, #ffdddd, #ffe3e3);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 99, 132, 0.2);
+}
+
+/* Step 3 - componentContainer */
+.accordionContainer {
+  /* background-color: #fff; */
+  border-radius: 10px;
+}
+
+/* Step 4 - row */
+.accordionBody {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Step 5 - column */
+.accordionBlock {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+/* Step 6 - subColumn */
+.accordionBox {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+}
+
+/* Step 7 - Title (clickable) */
+.accordionTitle {
+  background: linear-gradient(90deg, #e239ee, #ff009d);
+  border: 2px solid #4d0457;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 20px 20px 0 0;
+}
+
+
+/* Toggle Symbol */
+.accordionTitle::after {
+  content: '-';
+  font-size: 3rem;
+  color: #200e37;
+  position: absolute;
+  right: 2rem;
+  transition: 0.3s ease;
+}
+
+/* Step 8 - Content */
+.accordionContent {
+    background-color: rgb(169, 250, 236);
+  color: rgb(3, 3, 3);
+  padding: 2rem;
+  font-size: 2rem;
+  text-align:start;
+  text-wrap:wrap;
+  border-top: 1px solid #000;
+  transition: all 0.5s ease;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+/* Collapsed state */
+.accordionBlock.active .accordionTitle::after {
+  content: '+';
+}
+
+.accordionBlock.active .accordionContent {
+  padding: 0;
+  max-height: 0;
+  opacity: 0;
+}
+
+.heading{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+
+@media (max-width: 576px) {
+  .accordionTitle {
+    font-size: 1.4rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .accordionTitle::after {
+    font-size: 2rem;
+    right: 1rem;
+  }
+
+  .accordionContent {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .accordionBody {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .accordionTitle {
+    font-size: 1.6rem;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .accordionTitle::after {
+    font-size: 2.5rem;
+    right: 1.5rem;
+  }
+
+  .accordionContent {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+
